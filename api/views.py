@@ -14,12 +14,16 @@ from rest_framework import generics
 #Viewset
 from rest_framework import viewsets
 from django.shortcuts import get_object_or_404
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 #ModelViewSet
 class ArticleModelViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+    permission_classes = [IsAuthenticated]
+    authentication_classes = (TokenAuthentication,)
 
 #GenericViewset
 '''
